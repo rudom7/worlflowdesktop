@@ -1,26 +1,25 @@
 -- Create the pensioners table first
-CREATE TABLE IF NOT EXISTS pensioners (
-    id SERIAL PRIMARY KEY,
-    code TEXT NOT NULL,
+CREATE TABLE pensioners (
+    code TEXT,
     bank_accountnumber TEXT,
-    annualbasicsalary NUMERIC,
+    annualbasicsalary TEXT,
     bank_name TEXT,
     bank_branchcode TEXT,
     company TEXT,
     costcentre TEXT,
     currency TEXT,
-    dailyrate NUMERIC,
-    dateofbirth DATE,
-    dateofengagement DATE,
-    dateoftermination DATE,
+    dailyrate TEXT,
+    dateofbirth TEXT,
+    dateofengagement TEXT,
+    dateoftermination TEXT,
     department_code TEXT,
     department TEXT,
     employee TEXT,
     firstname TEXT,
     gender TEXT,
-    grosspay NUMERIC,
-    hourlyrate NUMERIC,
-    hoursperperiod NUMERIC,
+    grosspay TEXT,
+    hourlyrate TEXT,
+    hoursperperiod TEXT,
     maritalstatus TEXT,
     nationalidentificationno TEXT,
     nationality TEXT,
@@ -38,23 +37,22 @@ CREATE TABLE IF NOT EXISTS pensioners (
     position TEXT,
     postaladdress TEXT,
     postaladdress2 TEXT,
-    retirementdate DATE,
+    retirementdate TEXT,
     surname TEXT,
     taxationmethod TEXT,
-    taxableearnings NUMERIC,
-    totaldeductions NUMERIC,
-    pension NUMERIC,
-    pensionlumpsum NUMERIC,
-    pensionarrearsupload NUMERIC,
-    pensionlumpsumarrearsupload NUMERIC,
-    usdallowance NUMERIC,
-    payecalculated NUMERIC,
-    taxlevy NUMERIC,
-    netpaid NUMERIC
+    taxableearnings TEXT,
+    totaldeductions TEXT,
+    pension TEXT,
+    pensionlumpsum TEXT,
+    pensionarrearsupload TEXT,
+    pensionlumpsumarrearsupload TEXT,
+    usdallowance TEXT,
+    payecalculated TEXT,
+    taxlevy TEXT,
+    netpaid TEXT
 );
-
 -- Import data from CSV
-COPY public.pensioners (
+\copy public.pensioners (
     code, 
     bank_accountnumber, 
     annualbasicsalary, 
@@ -106,9 +104,12 @@ COPY public.pensioners (
     taxlevy, 
     netpaid
 ) 
-FROM 'client/src/lib/pensioner_csv/Pensionersdetails.csv' 
-DELIMITER ',' 
-CSV HEADER 
-ENCODING 'UTF8' 
-QUOTE '"' 
-ESCAPE '''';
+FROM 'C:/Users/RudoMhiripiri/Downloads/ZEIPF Workflow Automation System/ZEIPF Workflow Automation System/client/src/lib/pensioner_csv/Pensionersdetails.csv' 
+WITH (
+    FORMAT csv, 
+    HEADER true, 
+    DELIMITER ',', 
+    ENCODING 'UTF8', 
+    QUOTE '"'
+);
+'client/src/lib/pensioner_csv/Pensionersdetails.csv'
